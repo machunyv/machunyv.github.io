@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mission2</title>
+</head>
+<body>
+    <p class="content"></p>
+    请输入一个名字：<input type="text" class="text1"></input>
+    <button type="button" id="button1" class="generate">点击生成笑话</button>
+</body>
+<script>
+    var content = '这句话会展现出来';
+    
+    var joke = generateJoke();
+    btn = document.querySelector("#button1");
+    btn.addEventListener('click', clickButton);
+
+
+    function generateJoke() {
+
+        var targetUsers = ['立山雪', '王俊皓', '林轩鹤', '野生会', '成为其'];
+        var places = ['停尸房', 'm78星云', '练习室', '篮球场', '乒乓球馆', '厕所'];
+        var actions = ['飞升了', '成灰了', '98', '在人行道化成了一坨泥', '变成了一道闪电'];
+
+        var targetUser = getElement(targetUsers);
+        var place = getElement(places);
+        var action = getElement(actions);
+        var sourceUser = document.querySelector(".text1").value || '卖茶叶的';
+
+        var joke = `今天气温 ${ Math.random() * 30 } 摄氏度，${targetUser}出门散步。当走到${place}门前时，突然就${action}。人们都惊呆了，${sourceUser}全程目睹但并没有慌，因为${targetUser}是一个 140 公斤的胖子，天气又辣么热。`;
+        console.log(joke);
+        return joke;
+    }
+
+    function getElement(arr) {
+
+        var index = Math.floor(Math.random() * arr.length);
+        return arr[index];
+    }
+
+    function clickButton() {
+        var p = document.querySelector(".content");
+        console.log(p);
+        content = generateJoke();
+        p.innerHTML = content;
+    }
+</script>
